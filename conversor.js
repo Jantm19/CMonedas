@@ -1,61 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  // Obtener referencias a los elementos del DOM necesarios
+  const form = document.querySelector('form');
+  const valorInput = document.getElementById('valor');
+  const monedaOrigenSelect = document.getElementById('moneda_origen');
+  const monedaDestinoSelect = document.getElementById('moneda_destino');
+  const resultadoInput = document.getElementById('resultado_input');
+  
+  // Agregar un evento de escucha al formulario cuando se envía
+  form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Evitar el envío del formulario por defecto
     
-    // Obtener valores ingresados por el usuario
-    var valor = document.getElementById('valor').value;
-    var monedaOrigen = document.getElementById('moneda_origen').value;
-    var monedaDestino = document.getElementById('moneda_destino').value;
+    // Obtener los valores ingresados por el usuario
+    const valor = valorInput.value;
+    const monedaOrigen = monedaOrigenSelect.value;
+    const monedaDestino = monedaDestinoSelect.value;
     
-    // Realizar la conversión de divisas
-    var resultado = convertirDivisas(valor, monedaOrigen, monedaDestino);
+    // Realizar la conversión de divisas llamando a la función correspondiente
+    const resultado = convertirDivisas(valor, monedaOrigen, monedaDestino);
     
-    // Mostrar el resultado en la página
-    document.getElementById('resultado_input').value = " " + resultado;
+    // Mostrar el resultado en el elemento de resultado en la página
+    resultadoInput.value = `${valor} ${monedaOrigen} es ${resultado} en ${monedaDestino}`;
     
     // Restablecer los campos del formulario
-    document.getElementById('valor').value = '';
-    document.getElementById('moneda_origen').selectedIndex = 0;
-    document.getElementById('moneda_destino').selectedIndex = 0;
+    form.reset();
   });
 
+  // Función para convertir divisas
   function convertirDivisas(valor, monedaOrigen, monedaDestino) {
-    // De pesos MXN a todos los de mas
-    if (monedaOrigen === 'MXN' && monedaDestino === 'USD') {
-      return valor * 0.059;
+    // Objeto que mapea las tasas de conversión entre diferentes monedas
+    const tasaConversion = {
+      'MXN': { 'USD': 0.059, 'EUR': 0.054, 'LB': 0.046, 'WN': 76.29, 'JPY': 8.47 },
+      'USD': { 'MXN': 17.06 },
+      'EUR': { 'MXN': 18.60 },
+      'LB': { 'MXN': 21.65 },
+      'WN': { 'MXN': 0.013 },
+      'JPY': { 'MXN': 0.12 }
+    };
+
+    // Comprobar si la moneda de origen y la moneda de destino son iguales
+    if (monedaOrigen === monedaDestino) {
+      return valor; // No se necesita conversión, se devuelve el valor original
     }
-    if (monedaOrigen === 'MXN' && monedaDestino === 'EUR') {
-      return valor * 0.054;
-    }
-    if (monedaOrigen === 'MXN' && monedaDestino === 'LB') {
-      return valor * 0.046;
-    }
-    if (monedaOrigen === 'MXN' && monedaDestino === 'WN') {
-      return valor * 76.29;
-    }
-    if (monedaOrigen === 'MXN' && monedaDestino === 'JPY') {
-      return valor * 8.47;
-    }
-    if (monedaOrigen == monedaDestino) {
-      return valor * 1;
-    }
-    // De pesos todos los de mas a Pesos Mexicanos
-    if (monedaOrigen === 'USD' && monedaDestino === 'MXN') {
-      return valor * 17.06;
-    }
-    if (monedaOrigen === 'EUR' && monedaDestino === 'MXN') {
-      return valor * 18.60;
-    }
-    if (monedaOrigen === 'LB' && monedaDestino === 'MXN') {
-      return valor * 21.65;
-    }
-    if (monedaOrigen === 'WN' && monedaDestino === 'MXN') {
-      return valor * 0.013;
-    }
-    if (monedaOrigen === 'JPY' && monedaDestino === 'MXN') {
-      return valor * 0.12;
+    
+    // Comprobar si existe una tasa de conversión válida en el objeto tasaConversion
+    const tasa = tasaConversion[monedaOrigen] && tasaConversion[monedaOrigen][monedaDestino];
+    if (tasa) {
+      return valor * tasa; // Realizar la conversión utilizando la tasa de conversión correspondiente
     }
 
-    return valor;
+    return 'No se encontró una tasa de conversión válida'; // Devolver un mensaje de error si no se encuentra una tasa válida
   }
 });

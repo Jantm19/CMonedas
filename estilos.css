@@ -6,7 +6,7 @@
 .container {
   position: relative;
 
-  background: #89BBEE;
+  background-color: rgba(28,110,164,0.62)
 }
 .principal{
    text-align: center;
@@ -59,16 +59,41 @@ select, input[type="number"] {
 
 button {
   padding: 10px 20px;
-  font-size: 16px;
+  border-radius: 20px;
+  color: rgb(2, 1, 1);
+  line-height: 20px;
+  padding: 14px;
+  background-color: #81c9fa;
+  font-family: Georgia; 
+  font-size: 25px;
 }
 
 input[type="text"] {
+  font-style: initial;
+  text-align: center;
+  align-content: center;
+  margin: 10px;
   padding: 5px;
   font-size: 16px;
   width: 300px;
 }
 
 #resultado_input {
+  text-align: center;
+  align-content: center;
+  font-size:large;
+  font-style: italic;
+  margin: 10px;
   margin-top: 10px;
+}
+.terminos p {
+  text-align:center;
+  font-style: italic;
+  margin: 15px;
+}
+p{
+  text-align:right;
+  font-style: italic;
+  margin: 10px;
 }
 

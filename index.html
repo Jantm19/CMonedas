@@ -3,7 +3,7 @@
 <head>
   <title>Conversor de Divisas</title>
   <link rel="stylesheet" href="estilos.css">
-  <script src="conversor.js"> </script>
+  <script src="conversoract.js"> </script>
 
 </head>
 <body>
@@ -44,16 +44,21 @@
         
         <button type="submit">Convertir</button>
       </form>
-
-      <label for="resultado_input">Resultado de la conversión</label>
+      <div class="terminos">
+        <p><strong>Terminos:</strong> Puedes cambiar de pesos mexicanos <strong>MXN</strong> a cualquier otro <strong>tipo de moneda</strong> </p>
+        <p>y solo puedes cambiar cualquier <strong>tipo de moneda</strong> a  <strong>pesos mexicanos</strong></p>
+        <label for="resultado_input">Resultado de la conversión</label>
       <input type="text" id="resultado_input" readonly>
+      </div>
     </div>
   </section>
   </main>
   <footer>
     <div class="caja">
       <h1><img src="img/aluraoracle.png"></h1>
+      <p id="creador"><strong>Creado por: </strong>Janet Trejo Márquez</p>
   </div>
 </footer>
+
 </body>
 </html>

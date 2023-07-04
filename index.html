@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Conversor de Divisas</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="conversor.js"> </script>
+
+</head>
+<body>
+  <header>
+    <div class="caja">
+        <h1><img src="img/aluraoracle.png"></h1>
+    </div>
+</header>
+  <main>
+    <section class="principal">
+    <div class="container">
+      <h1>Conversor de Divisas</h1>
+      
+      <form>
+
+        <label for="valor">Valor a convertir:</label>
+        <input type="number" id="valor" name="valor" required><br><br>
+        
+        <label for="moneda_origen">Moneda de origen:</label>
+        <select id="moneda_origen" name="moneda_origen" required>
+          <option value="MXN">Pesos Mexicanos(MXN)</option>
+          <option value="USD">Dólar estadounidense (USD)</option>
+          <option value="EUR">Euros</option>
+          <option value="LB">libras Esterlinas</option>
+          <option value="WN">Won sur-coreano</option>
+          <option value="JPY">Yen japonés (JPY)</option>
+        </select><br><br>
+        
+        <label for="moneda_destino">Moneda de destino:</label>
+        <select id="moneda_destino" name="moneda_destino" required>
+          <option value="MXN">Pesos Mexicanos(MXN)</option>
+          <option value="USD">Dólar estadounidense (USD)</option>
+          <option value="EUR">Euros</option>
+          <option value="LB">libras Esterlinas</option>
+          <option value="WN">Won sur-coreano</option>
+          <option value="JPY">Yen japonés (JPY)</option>
+        </select><br><br>
+        
+        <button type="submit">Convertir</button>
+      </form>
+
+      <label for="resultado_input">Resultado de la conversión</label>
+      <input type="text" id="resultado_input" readonly>
+    </div>
+  </section>
+  </main>
+  <footer>
+    <div class="caja">
+      <h1><img src="img/aluraoracle.png"></h1>
+  </div>
+</footer>
+</body>
+</html>
